@@ -23,7 +23,7 @@
     var shots = 0;
     var hits = 0;
     var acuracy = 0;
-    var scoreToIn = 70;
+    var scoreToIn = 50;
   
     
     
@@ -47,6 +47,13 @@
     var pauseMessage = new ObjectMessage(cnv.height/2, "PAUSED", "#f00")
     
     
+    var gameoverMessage =
+    new ObjectMessage(cnv.height/2, "", "#f00")
+    
+    gameoverMessage.font = "normal bold 15px emulogic";
+    
+    gameoverMessage.visible = false;
+    
     //placar
     var scoreMessage
     = new ObjectMessage(10, "", "#0f0")
@@ -64,6 +71,8 @@
     messages.push(pauseMessage)
     
     messages.push(startMessage)
+    
+    messages.push(gameoverMessage)
     
     
     
@@ -275,7 +284,10 @@
                 break;
             case playing:
                 update()
-                break;    
+                break;
+            case over:
+              endGame()
+              break;
         }
         render()
     }
@@ -358,6 +370,20 @@
           if(alien.y > cnv.height - alien.height){
             gameState = over;
           }
+          
+          
+          //Confere se algum alien colidiu com a nave
+          if(collide(alien, defender)){
+            
+            destroyAlien(alien)
+            removeObjetcs(defender,sprites)
+            gameState = over;
+            
+            
+          }
+          
+          
+          
           //Confere se algum alien foi destruido
           for(var j in missil){
             var missile = missil[j]
@@ -365,6 +391,21 @@
               destroyAlien(alien)
               hits++
               updateScore()
+              
+              if(parseInt(hits) === scoreToIn){
+                
+                gameState = over
+                
+                // Destroi todos os aliens
+                for(var k in aliens){
+                  
+                  alienk = aliens[k]
+                  
+                  destroyAlien(alienk)
+                  
+                }
+                
+              }
               
               removeObjetcs(missele, missil)
               removeObjetcs(missele, sprites)
@@ -502,6 +543,35 @@
       
       
     }
+    
+    
+    function endGame(){
+      
+      if(hits < scoreToIn){
+        
+        gameoverMessage.text = "A TERRA FOI DESTRUÍDA!"
+      } else{
+        
+        gameoverMessage.text = `VITÓRIA!! A TERRA FOI SALVA`
+        
+        gameoverMessage.color = "#00f"
+        gameoverMessage.font =
+        "normal bold 10px emulogic"
+        
+      }
+      gameoverMessage.visible = true
+      
+      setTimeout(function(){
+        
+        location.reload();
+        
+        
+      }, 3000)
+      
+      
+    }
+    
+    
 
     function render(){
         ctx.clearRect(0,0,cnv.width,cnv.height)
