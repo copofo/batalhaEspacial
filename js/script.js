@@ -397,7 +397,7 @@
       var alien = 
       new Alien(30, 0, 50, 50, alienPosition, -50)
       
-      alien.vy = 1;
+      alien.vy = 0.5;
       
       //Otimização do alien
       
@@ -405,12 +405,12 @@
         
         alien.state = alien.crazy
         
-        alien.vx = 2;
+        alien.vx = 1;
         
       }
       
       if(Math.floor(Math.random() * 11) > 5){
-        alien.vy = 2
+        alien.vy = 1
       }
     
       
@@ -470,6 +470,10 @@
       
       //ajuste no texto aproveitamento
       
+      if(acuracy > 100){
+        acuracy = 100
+      }
+      
       if(acuracy < 100){
         acuracy = acuracy.toString()
         if(acuracy.length < 2){
@@ -479,6 +483,8 @@
           acuracy = " " + acuracy;
           
         }
+        
+        
       }
       
       //Ajuste no texto HITS
