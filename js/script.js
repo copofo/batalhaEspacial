@@ -25,7 +25,9 @@
     var acuracy = 0;
     var scoreToIn = 50;
   
+    var music = document.getElementById("music")
     
+    music.play()
     
     //sprites
     //cenário
