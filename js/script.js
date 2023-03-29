@@ -1,6 +1,21 @@
 (function(){
 
     //canvas
+    var music = document.querySelector('audio')
+    
+    window.addEventListener('DOMContentLoaded', ()=>{
+      
+    
+        
+        music.controls = false
+        music.play()
+        
+        
+        
+      
+      
+      
+    })
 
     var cnv = document.querySelector('canvas')
     //Contexto de rendererização 2d
@@ -25,9 +40,8 @@
     var acuracy = 0;
     var scoreToIn = 50;
   
-    var music = document.getElementById("music")
     
-    music.play()
+    
     
     //sprites
     //cenário
@@ -147,6 +161,9 @@
     }, false)
 
     ss.addEventListener('touchend',()=>{
+      
+      music.play()
+      
 
         if(gameState !== playing){
             gameState = playing
@@ -159,6 +176,7 @@
         }     
 
     }, false)
+    
     
     tiro.addEventListener('touchstart',()=>{
       
