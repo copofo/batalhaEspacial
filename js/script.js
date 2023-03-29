@@ -1,5 +1,7 @@
 (function(){
+
     //canvas
+
     var cnv = document.querySelector('canvas')
     //Contexto de rendererização 2d
     var ctx = cnv.getContext('2d')
@@ -452,11 +454,40 @@
       
       //calculo do aproveitamento
       if(shots === 0){
+        
         acuracy = 100;
+        
       } else{
+        
         acuracy = 
-        Math.floor(hits / shots) * 100
+
+        
+
+        Math.floor((hits / shots) * 100)
+        
+        
       }
+      
+      //ajuste no texto aproveitamento
+      
+      if(acuracy < 100){
+        acuracy = acuracy.toString()
+        if(acuracy.length < 2){
+          acuracy = "  " + acuracy;
+        } else{
+          
+          acuracy = " " + acuracy;
+          
+        }
+      }
+      
+      //Ajuste no texto HITS
+      hits = hits.toString()
+      if(hits.length < 2){
+        hits = "0" + hits;
+      }
+        
+      
       
       scoreMessage.text =
       "HITS: " + hits + " - ACURACY: " +

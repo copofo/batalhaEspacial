@@ -1,4 +1,8 @@
-@font-face{
-  font-family: emologic;
-  src: url("../fonts/emulogic.ttf")
+@charset "UTF-8";
+
+@font-face {
+    font-family: 'emulogic';
+    src: url('../fonts/emulogic.ttf')
+    format('opentype')
+    
 }
