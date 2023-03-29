@@ -39,6 +39,9 @@
     var hits = 0;
     var acuracy = 0;
     var scoreToIn = 50;
+    var fire = 0;
+    var exposion = 1;
+    
   
     
     
@@ -400,6 +403,7 @@
           if(collide(alien, defender)){
             
             destroyAlien(alien)
+            playSound(exposion)
             removeObjetcs(defender,sprites)
             gameState = over;
             
@@ -450,6 +454,9 @@
       missile.vy = -8
       sprites.push(missile)
       missil.push(missile)
+      
+      playSound(fire)
+      
       shots++
     }
     
@@ -492,6 +499,7 @@
     function destroyAlien(alien){
       alien.state = alien.exploded
       alien.explode()
+      playSound(exposion)
       setTimeout(function() {
         
         
@@ -594,6 +602,32 @@
       
       
     }
+    
+    
+    //Efeitos sonoros do Jogo
+    
+    function playSound(soundType){
+      
+      var sound = document.createElement('audio')
+      if(soundType === exposion){
+        
+        sound.src = "../sound/explosion.mp3"
+        
+      } else{
+        
+        sound.src = "../sound/fire.mp3"
+        
+        
+      }
+      
+      sound.addEventListener('canplaythrough',()=>{
+        
+        sound.play()
+        
+      },false)
+      
+    }
+    
     
     
 
