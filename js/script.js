@@ -126,6 +126,8 @@
     var ss = document.getElementById('ss')
     
     var tiro = document.getElementById('circ')
+    
+    var x = document.getElementById('x')
 
 /*
     window.addEventListener('keydown', function(e){
@@ -172,6 +174,7 @@
 
         } else{
             gameState = paused
+            music.pause()
             pauseMessage.visible = true
         }     
 
@@ -195,6 +198,7 @@
         spaceIsDown = false
       
     })
+    
     
     /*
 
